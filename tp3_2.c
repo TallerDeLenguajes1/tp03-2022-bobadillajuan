@@ -1,4 +1,4 @@
-//Ejemplo 3 - reserva dinámica de memoria con variable auxiliar
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
