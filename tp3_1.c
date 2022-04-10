@@ -24,12 +24,12 @@ for (int i = 0; i < 5; i++)
     puts (V[i]);
 }
 
-int n;
-printf("para detener el programa: ");
-scanf("%i", &n);
-
 free(Buff);
-free();
+
+for (int i = 0; i < 5; i++)
+{
+    free(V[i]);
+}
 
 
 
