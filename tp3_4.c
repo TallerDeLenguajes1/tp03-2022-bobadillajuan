@@ -5,11 +5,17 @@
 int main() {
 
 char *Buff; 
-char *V[5];
+int cantidad;
 
 Buff= (char *) malloc(100*sizeof(char));
 
-for (int i = 0; i < 5; i++)
+printf("\nIngrese la cantidad de nombres que va a cargar: ");
+scanf("%i", &cantidad);
+fflush(stdin);
+
+char *V[cantidad];
+
+for (int i = 0; i < cantidad; i++)
 {
 fflush(stdin);
 printf("Ingrese el nombre %i : ", i+1);
@@ -19,14 +25,14 @@ strcpy(V[i],Buff);
 }
 
 printf("Lo nombres son:");
-for (int i = 0; i < 5; i++)
+for (int i = 0; i < cantidad; i++)
 {
     puts (V[i]);
 }
 
 free(Buff);
 
-for (int i = 0; i < 5; i++)
+for (int i = 0; i < cantidad; i++)
 {
     free(V[i]);
 }
