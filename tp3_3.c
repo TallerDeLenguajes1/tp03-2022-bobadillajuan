@@ -4,7 +4,6 @@
 #include <time.h>
 
 
-
 struct Producto{
 int productoID; //Numerado en ciclo iterativo
 int cantidad; // entre 1 y 10
@@ -20,9 +19,12 @@ struct Producto *Productos; //El tamaño de este arreglo depende de la variable 
 
 };
 
+float precioProducto(struct Producto *Productos);
+
 int main() {
 
 int n, i;
+float precioProductoTotal, precioClienteTotal = 0;
 srand (time(NULL));
 char *Buff; 
 Buff= (char *) malloc(100*sizeof(char));
@@ -61,6 +63,7 @@ for (int i = 0; i < n; i++)
         Clientes[i].Productos[j].tipoProducto = (char *) malloc(13*sizeof(char));
         strcpy(Clientes[i].Productos[j].tipoProducto, tiposProductos[rand()%(5)]);
         Clientes[i].Productos[j].precioUnitario = rand()%(100)+1;
+        
     }
     
 
@@ -69,7 +72,7 @@ for (int i = 0; i < n; i++)
 printf("\n\n-----Muestra de clientes y sus productos-----");
 for (int i = 0; i < n; i++)
 {
-    printf("\nCliente ID: %i", Clientes[i].clienteID);
+    printf("\n\nCliente ID: %i", Clientes[i].clienteID);
     printf("\nNombre del cliente: %s", Clientes[i].nombreCliente);
     printf("\nCantidad de productos a pedir: %i", Clientes[i].cantidadProductosAPedir);
     printf("\n\n-----------------");
@@ -80,9 +83,17 @@ for (int i = 0; i < n; i++)
         printf("\n\n\tID del producto: %i", Clientes[i].Productos[j].productoID);
         printf("\n\tTipo de producto: %s", Clientes[i].Productos[j].tipoProducto);
         printf("\n\tCantidad: %i", Clientes[i].Productos[j].cantidad);
-        printf("\n\tPrecio unitario: %f", Clientes[i].Productos[j].precioUnitario);
+        printf("\n\tPrecio unitario: %.2f", Clientes[i].Productos[j].precioUnitario);
+        precioProductoTotal = precioProducto(&Clientes[i].Productos[j]); 
+        precioClienteTotal = precioClienteTotal + precioProductoTotal;
+        printf("\n\tPrecio total del producto: %.2f", precioProductoTotal);
+
     }
-    printf("Fin del cliente ID: %i", Clientes[i].clienteID);
+
+
+    printf("\n\nCosto total a pagar del cliente: %.2f", precioClienteTotal);
+    precioClienteTotal = 0;
+    printf("\nFin del cliente ID: %i", Clientes[i].clienteID);
     printf("\n\n-----------------");
 
 }
@@ -90,6 +101,14 @@ for (int i = 0; i < n; i++)
 
 
 
+
 return 0;
 }
 
+float precioProducto(struct Producto *productos){
+
+    int precioProductoTotal;
+    precioProductoTotal =   productos->precioUnitario * productos->cantidad;
+    return precioProductoTotal;
+
+}
