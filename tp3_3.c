@@ -59,7 +59,6 @@ for (int i = 0; i < n; i++)
         Clientes[i].Productos[j].productoID = j;
         Clientes[i].Productos[j].cantidad = rand()%(10)+1;
         Clientes[i].Productos[j].tipoProducto = (char *) malloc(13*sizeof(char));
-        //Luego hacer una nota sobre esto: ¿Por que dejamos de usar las flechas aqui?
         strcpy(Clientes[i].Productos[j].tipoProducto, tiposProductos[rand()%(5)]);
         Clientes[i].Productos[j].precioUnitario = rand()%(100)+1;
     }
@@ -91,18 +90,6 @@ for (int i = 0; i < n; i++)
 
 
 
-
-
-
 return 0;
 }
 
-//Notas aparte
-
-//En el momento que se crea el puntero para Cliente también se "crea" la definicion de Producto, por lo que solamente hay que asignarle memoria
-
-// struct Producto *Productos; Acaso esto se define dentro de la estructura ya? -- Sí
-
-// cliente[i].NombreCliente = (char *)malloc((strlen(Buff)+1)*sizeof(char));
-
-//rand
